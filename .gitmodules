@@ -9,3 +9,6 @@
 [submodule "lib/fx-portal"]
 	path = lib/fx-portal
 	url = https://github.com/0xPolygon/fx-portal
+[submodule "lib/ERC721A"]
+	path = lib/ERC721A
+	url = https://github.com/chiru-labs/ERC721A
