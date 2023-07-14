@@ -10,11 +10,9 @@ import { BaseScript } from "./Base.s.sol";
 
 contract Deploy is BaseScript {
     function run() public broadcast {
-
         address checkpointManager = 0x86E4Dc95c7FBdBf52e33D563BbDB00823894C287;
         address fxRoot = 0xfe5e5D361b2ad62c541bAb87C45a0B9B018389a2;
         address fxChild = 0x8397259c983751DAf40400790063935a11afa28a;
-
 
         vm.createSelectFork(vm.rpcUrl("mainnet"));
         address jiraCentral = address(new JiraCentral());
@@ -24,6 +22,5 @@ contract Deploy is BaseScript {
         // create and select fork for goerli
         vm.createSelectFork(vm.rpcUrl("goerli"));
         address spitDispenser = address(new SpitDispenser(fxChild, spitYard));
-
     }
 }

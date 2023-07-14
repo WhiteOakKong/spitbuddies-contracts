@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-import "@erc721a/contracts/IERC721A.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@fxportal/contracts/tunnel/FxBaseRootTunnel.sol";
+import { IERC721A } from "@erc721a/contracts/IERC721A.sol";
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+import { FxBaseRootTunnel } from "@fxportal/contracts/tunnel/FxBaseRootTunnel.sol";
 
 ///@title SpitYard - A collaboration between Llamaverse and PG
 ///@author WhiteOakKong
@@ -21,14 +21,14 @@ contract SpitYard is FxBaseRootTunnel, Ownable {
     //                      STORAGE                               //
     //////////////////////////////////////////////////////////////*/
 
-    mapping(address => uint256[]) public userStake;
+    uint256 public constant JIRA_REWARD = 6 ether;
+
+    bool public stakingPaused;
 
     IERC721A public spitBuddies;
     IJiraCentral public jiraCentral;
 
-    bool public stakingPaused;
-
-    uint256 public constant JIRA_REWARD = 6 ether;
+    mapping(address user => uint256[] stakedTokens) public userStake;
 
     /*///////////////////////////////////////////////////////////////
     //                       EVENTS                               //

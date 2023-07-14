@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@fxportal/contracts/tunnel/FxBaseChildTunnel.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { FxBaseChildTunnel } from "@fxportal/contracts/tunnel/FxBaseChildTunnel.sol";
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
 ///@title SpitDispenser - A collaboration between Llamaverse and PG
 ///@author WhiteOakKong
@@ -12,10 +12,10 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract SpitDispenser is FxBaseChildTunnel, Ownable {
     uint256 public spitRate = 15 ether;
 
-    mapping(address => uint256) public stakedBalance;
-    mapping(address => uint256) public spitAccumulated;
+    mapping(address user => uint256 balance) public stakedBalance;
+    mapping(address user => uint256 balance) public spitAccumulated;
 
-    mapping(address => uint256) public lastUpdated;
+    mapping(address user => uint256 lastTime) public lastUpdated;
 
     ///@dev verify address before deployment
     IERC20 public spit;

@@ -2,22 +2,21 @@
 
 pragma solidity 0.8.19;
 
-
 ///@title JiraCentral - A collaboration between Llamaverse and PG
 ///@author WhiteOakKong
 ///@notice This contract coordinates off-chain JIRAX yield.
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+import { Strings } from "@openzeppelin/contracts/utils/Strings.sol";
 
 contract JiraCentral is Ownable {
     using Strings for uint256;
 
-    mapping(address => bool) public approvedContracts;
-    mapping(address => uint256) public userData;
+    mapping(address _contract => bool status) public approvedContracts;
+    mapping(address user => uint256 currentRate) public userData;
 
     ///@notice event that is used to track the current generation rate for an address
-    event currentRate(address user, uint256 rate);
+    event CurrentRate(address user, uint256 rate);
 
     ///@notice restricts function access to only approved addresses
     modifier onlyApproved(address _address) {

@@ -6,10 +6,10 @@ pragma solidity 0.8.19;
 ///@author WhiteOakKong
 ///@notice SpitBuddies is an ERC721A contract that allows for minting 200 spitbuddies.
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
-import "@erc721a/contracts/ERC721A.sol";
-import "operator-filter-registry/src/DefaultOperatorFilterer.sol";
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+import { Strings } from "@openzeppelin/contracts/utils/Strings.sol";
+import { ERC721A } from "@erc721a/contracts/ERC721A.sol";
+import { DefaultOperatorFilterer } from "operator-filter-registry/src/DefaultOperatorFilterer.sol";
 
 contract SpitBuddies is ERC721A, Ownable, DefaultOperatorFilterer {
     using Strings for uint256;
@@ -81,11 +81,13 @@ contract SpitBuddies is ERC721A, Ownable, DefaultOperatorFilterer {
 
     // ============ OPERATOR-FILTER-OVERRIDES ============
 
-    // function setApprovalForAll(address operator, bool approved) public override onlyAllowedOperatorApproval(operator) {
+    // function setApprovalForAll(address operator, bool approved) public override onlyAllowedOperatorApproval(operator)
+    // {
     //     super.setApprovalForAll(operator, approved);
     // }
 
-    // function approve(address operator, uint256 tokenId) public payable override onlyAllowedOperatorApproval(operator) {
+    // function approve(address operator, uint256 tokenId) public payable override onlyAllowedOperatorApproval(operator)
+    // {
     //     super.approve(operator, tokenId);
     // }
 
@@ -129,4 +131,3 @@ contract SpitBuddies is ERC721A, Ownable, DefaultOperatorFilterer {
     //     super.safeTransferFrom(from, to, tokenId, data);
     // }
 }
-
