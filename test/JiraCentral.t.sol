@@ -13,7 +13,7 @@ contract JiraCentralTest is PRBTest, StdCheats {
     address internal approvedUser = makeAddr("approvedUser");
     address internal unapprovedUser = makeAddr("unapprovedUser");
 
-    event currentRate(address user, uint256 rate);
+    event CurrentRate(address user, uint256 rate);
 
     function setUp() public virtual {
         jiraCentral = new JiraCentral();
@@ -23,7 +23,7 @@ contract JiraCentralTest is PRBTest, StdCheats {
         jiraCentral.setApproved(approvedUser, true);
         vm.startPrank(approvedUser);
         vm.expectEmit(false, false, false, true);
-        emit currentRate(approvedUser, 100);
+        emit CurrentRate(approvedUser, 100);
         jiraCentral._increaseGeneration(approvedUser, 100);
         assertEq(jiraCentral.userData(approvedUser), 100);
     }
@@ -56,7 +56,7 @@ contract JiraCentralTest is PRBTest, StdCheats {
         vm.startPrank(approvedUser);
         jiraCentral._increaseGeneration(approvedUser, 100);
         vm.expectEmit(false, false, false, true);
-        emit currentRate(approvedUser, 0);
+        emit CurrentRate(approvedUser, 0);
         jiraCentral._decreaseGeneration(approvedUser, 100);
         assertEq(jiraCentral.userData(approvedUser), 0);
     }
@@ -84,7 +84,7 @@ contract JiraCentralTest is PRBTest, StdCheats {
         jiraCentral.setApproved(approvedUser, true);
         vm.startPrank(approvedUser);
         vm.expectEmit(true, true, true, true);
-        emit currentRate(approvedUser, increaseValue);
+        emit CurrentRate(approvedUser, increaseValue);
         jiraCentral._increaseGeneration(approvedUser, increaseValue);
         if (decreaseValue > increaseValue) {
             //"Arithmetic over/underflow"
@@ -92,7 +92,7 @@ contract JiraCentralTest is PRBTest, StdCheats {
             jiraCentral._decreaseGeneration(approvedUser, decreaseValue);
         } else {
             vm.expectEmit(false, false, false, true);
-            emit currentRate(approvedUser, increaseValue - decreaseValue);
+            emit CurrentRate(approvedUser, increaseValue - decreaseValue);
             jiraCentral._decreaseGeneration(approvedUser, decreaseValue);
             assertEq(jiraCentral.userData(approvedUser), increaseValue - decreaseValue);
         }

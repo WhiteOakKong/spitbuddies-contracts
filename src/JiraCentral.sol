@@ -29,7 +29,7 @@ contract JiraCentral is Ownable {
     ///@param dailyAmount the amount to increase the rate by
     function _increaseGeneration(address _address, uint256 dailyAmount) external onlyApproved(msg.sender) {
         userData[_address] += dailyAmount;
-        emit currentRate(_address, userData[_address]);
+        emit CurrentRate(_address, userData[_address]);
     }
 
     ///@notice decreases stored generation rate for the user, and emits an event
@@ -37,7 +37,7 @@ contract JiraCentral is Ownable {
     ///@param dailyAmount the amount to decrease the generation rate by
     function _decreaseGeneration(address _address, uint256 dailyAmount) external onlyApproved(msg.sender) {
         userData[_address] -= dailyAmount;
-        emit currentRate(_address, userData[_address]);
+        emit CurrentRate(_address, userData[_address]);
     }
 
     ///@notice allows owner to adjust approved contracts that can utilize this contract

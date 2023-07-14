@@ -9,7 +9,6 @@ import { SpitYard } from "../src/SpitYard.sol";
 import { SpitBuddies } from "../src/SpitBuddies.sol";
 import { JiraCentral } from "../src/JiraCentral.sol";
 import { FxRoot } from "@fxportal/contracts/FxRoot.sol";
-import { ICheckpointManager } from "../src/SpitYard.sol";
 
 contract SpitYardTest is PRBTest, StdCheats {
     SpitYard internal spitYard;
@@ -31,7 +30,7 @@ contract SpitYardTest is PRBTest, StdCheats {
 
     function setUp() public virtual {
         fork = vm.createSelectFork(vm.rpcUrl("mainnet"), BLOCK_NUMBER);
-        ICheckpointManager _cm = ICheckpointManager(0x86E4Dc95c7FBdBf52e33D563BbDB00823894C287);
+        address _cm = 0x86E4Dc95c7FBdBf52e33D563BbDB00823894C287;
         FxRoot _fxRoot = FxRoot(0xfe5e5D361b2ad62c541bAb87C45a0B9B018389a2);
         spitBuddies = new SpitBuddies();
         jiraCentral = new JiraCentral();
